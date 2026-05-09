@@ -14,23 +14,39 @@ function filtrar(dados){
     };
 
 async function printar(dados, categoria) {
-    
-    for (let produto of dados){
-        if (produto.categoria == categoria){
-            let novaDiv = document.createElement('div');
-            novaDiv.innerHTML = produto.nome_produto
-            document.getElementById('res').appendChild(novaDiv);
-
-        } else {
-        let novaDiv = document.createElement('div');
-        let image = document.createElement('img')
-
-        novaDiv.classList.add('card');
-        novaDiv.innerHTML = produto.nome_produto
-        image.src = produto.link_imagem
-
-        document.getElementById('res').appendChild(image)
-        document.getElementById('res').appendChild(novaDiv);};
-    };
+    const container = document.getElementById('res');
+    container.innerHTML = '';
+    if(categoria == "null"){
+        for (let produto of dados){
+            const cardPronto = criarCardProduto(produto);
+            container.appendChild(cardPronto);
+        }
+    }else{
+        for (let produto of dados){
+            if (produto.categoria == categoria){
+                const cardPronto = criarCardProduto(produto)
+                container.appendChild(cardPronto)
+            }
+        }
+    }
 }
+
 filtrando.addEventListener('change', coletar_dados)
+coletar_dados()
+
+function criarCardProduto(produto_unico){
+    let div_geral = document.createElement('div')
+    div_geral.classList.add('card');
+
+    let imagem = document.createElement('img')
+    imagem.src = produto_unico.link_imagem
+
+    let titulo = document.createElement('h2')
+    titulo.textContent = produto_unico.nome_produto
+
+    let nivel = document.createElement('p')
+    nivel.textContent = produto_unico.barulho
+
+    div_geral.append(imagem, titulo, nivel)
+    return div_geral
+};

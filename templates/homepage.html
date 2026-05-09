@@ -6,15 +6,21 @@
     <title>Shiu</title>
 </head>
 <body>
+    <header>
+        <Label for="pesquisar">Pesquisar: </Label>
+        <input id="pesquisar" placeholder="Adicione o nome do produto ou a sey fabricante">
+        <button onclick="buscar()">Buscar</button>
+    </header>
     <h1>Lista</h1>
     <select class="filtrar-select">
-        <option value="*">Tudo</option>
-        <option value="eletrodomesticos">Eletrodomésticos</option>
-        <option>Tudo</option>
-        <option>Tudo</option>
+        <option value="null">Tudo</option>
+        <option value="eletrodomestico">Eletrodomésticos</option>
+        <option value="casa e construcao">Tudo</option>
+        <option value="">Tudo</option>
         <option>Tudo</option>
     </select>
     <ul id="res"></ul>
 </body>
-<script src="/static/script/search_produtos.js"></script>
+<script type="module" src="/static/script/search_produtos.js"></script>
+<script src="/static/script/pesquisa.js"></script>
 </html>
