@@ -4,24 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiu</title>
+    <!-- Mantendo o CSS e FontAwesome do front novo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <Label for="pesquisar">Pesquisar: </Label>
-        <input id="pesquisar" placeholder="Pesquise pela marca do produto!">
-        <button onclick="buscar()">Buscar</button>
-        <a href="{{ url_for('capturar') }}">AAAAAAAAa</a>
+
+    <header class="navbar">
+        <div class="container flex-nav">
+            <div class="logo">shiu</div>
+            <nav class="menu">
+                <a href="/" class="active">Início</a>
+                <!-- Link para sua rota de capturar, mantendo seu backend -->
+                <a href="{{ url_for('capturar') }}">Medir com microfone</a>
+            </nav>
+        </div>
     </header>
-    <h1>Lista</h1>
-    <select class="filtrar-select">
-        <option value="null">Tudo</option>
-        <option value="eletrodomestico">Eletrodomésticos</option>
-        <option value="casa e construcao">Tudo</option>
-        <option value="">Tudo</option>
-        <option>Tudo</option>
-    </select>
-    <ul id="res"></ul>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                <h1>Veja o som.<br><span>Entenda o mundo.</span></h1>
+                <p>Pesquise pela marca ou filtre por categoria para ver os decibéis.</p>
+            </div>
+
+            <!-- ÁREA DE BUSCA: Mesclando sua lógica com o estilo novo -->
+            <div class="search-container" style="max-width: 600px; margin: 0 auto; display: flex; gap: 10px; margin-bottom: 30px;">
+                <input id="pesquisar" placeholder="Pesquise pela marca do produto!" 
+                       style="flex: 1; padding: 15px; border-radius: 12px; border: 1px solid var(--border); font-family: 'Inter', sans-serif;">
+                
+                <button class="btn-primary" onclick="buscar()">Buscar</button>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 50px;">
+                <label for="filtrar" style="font-weight: 600; margin-right: 10px;">Filtrar por:</label>
+                <select class="filtrar-select" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+                    <option value="null">Tudo</option>
+                    <option value="eletrodomestico">Eletrodomésticos</option>
+                    <option value="casa e construcao">Casa e Construção</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- LISTA DE RESULTADOS: Onde seu JS vai injetar os produtos -->
+    <section class="container">
+        <div class="page-header">
+            <h1 id="titulo-lista">Lista de Produtos</h1><h2 id="categoria-titulo"></h2>
+        </div>
+        
+        <!-- Mantive o ID 'res', mas adicionei a classe do grid CSS para os cards ficarem bonitos -->
+        <ul id="res" class="grid-aparelhos" style="list-style: none; padding: 0;">
+            <!-- Seus scripts search_produtos.js e pesquisa.js vão preencher aqui -->
+        </ul>
+    </section>
+
+    <footer class="health-banner" style="margin-top: 80px;">
+        <div class="container footer-flex">
+            <div class="title-group">
+                <i class="fas fa-ear-listen"></i>
+                <span>Cuide da sua saúde auditiva</span>
+            </div>
+            <p>Sons acima de 85 dB podem causar desconforto. Use o shiu para medir e proteger.</p>
+            <img src="{{ url_for('static', filename='img/wave-line.png') }}" class="wave-img">
+        </div>
+    </footer>
+
+    <!-- SEUS SCRIPTS: Mantidos exatamente como na sua versão original -->
+    <script type="module" src="/static/script/search_produtos.js"></script>
+    <script src="/static/script/pesquisa.js"></script>
 </body>
-<script type="module" src="/static/script/search_produtos.js"></script>
-<script src="/static/script/pesquisa.js"></script>
 </html>

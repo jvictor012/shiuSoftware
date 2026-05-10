@@ -23,7 +23,7 @@ async function printar(dados, categoria) {
     }else{
         for (let produto of dados){
             if (produto.categoria == categoria){
-                const cardPronto = criarCardProduto(produto)
+                const cardPronto = criarCardProduto(produto, categoria)
                 container.appendChild(cardPronto)
             }
         }
@@ -33,19 +33,56 @@ async function printar(dados, categoria) {
 filtrando.addEventListener('change', coletar_dados)
 coletar_dados()
 
-function criarCardProduto(produto_unico){
-    let div_geral = document.createElement('div')
-    div_geral.classList.add('card');
+function criarCardProduto(produto_unico, categoria) {
+    // 1. Cria o container principal com a classe do CSS novo
+    let div_geral = document.createElement('div');
+    div_geral.classList.add('card-aparelho');
+    let categoria_titulo = document.getElementById('categoria-titulo')
+    if(categoria == undefined){
+        categoria_titulo.innerText = "Exibindo tudo!"
+    }else{
+        categoria_titulo.innerText = `Filtrando por: ${categoria}`
+    }
+    
 
-    let imagem = document.createElement('img')
-    imagem.src = produto_unico.link_imagem
+    // 2. Cria a caixa da imagem (img-box)
+    let imgBox = document.createElement('div');
+    imgBox.classList.add('img-box');
+    let imagem = document.createElement('img');
+    imagem.src = produto_unico.link_imagem;
+    imagem.alt = produto_unico.nome_produto;
+    imgBox.appendChild(imagem);
 
-    let titulo = document.createElement('h2')
-    titulo.textContent = produto_unico.nome_produto
+    // 3. Cria a área de informações (card-info)
+    let cardInfo = document.createElement('div');
+    cardInfo.classList.add('card-info');
 
-    let nivel = document.createElement('p')
-    nivel.textContent = produto_unico.barulho
+    let titulo = document.createElement('h3');
+    titulo.textContent = produto_unico.nome_produto;
 
-    div_geral.append(imagem, titulo, nivel)
-    return div_geral
-};
+    let nivel = document.createElement('div');
+    nivel.classList.add('db-badge');
+    nivel.textContent = `${produto_unico.barulho} dB`;
+
+    // 4. Lógica de cor da Tag (Opcional, mas deixa o projeto profissional)
+    let tag = document.createElement('span');
+    tag.classList.add('status-tag');
+    const db = parseInt(produto_unico.barulho);
+    
+    if (db <= 55) {
+        tag.classList.add('baixo');
+        tag.textContent = 'Silencioso';
+    } else if (db <= 75) {
+        tag.classList.add('moderado');
+        tag.textContent = 'Moderado';
+    } else {
+        tag.classList.add('alto');
+        tag.textContent = 'Alto';
+    }
+
+    // Montagem final seguindo a hierarquia do CSS
+    cardInfo.append(titulo, nivel, tag);
+    div_geral.append(imgBox, cardInfo);
+    
+    return div_geral;
+}

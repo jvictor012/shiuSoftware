@@ -3,15 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decibelímetro</title>
+    <title>Shiu | Teste de Áudio</title>
+    <!-- Link para o seu CSS (ajustado para Flask como vimos antes) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Importando ícones para ficar mais profissional -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Chamamos a função alternar() que cuida de tudo -->
-    <button id="botao" onclick="alternar()">Iniciar microfone</button>
-    <div id="card">
-        <p id="valor">0.00</p>
-    </div>
 
-    <script src="/static/script/audio.js"></script>
+    <nav class="navbar">
+        <div class="container flex-nav">
+            <div class="logo">SHIU</div>
+            <div class="menu">
+                <a href="{{ url_for('home') }}">Início</a>
+                <a href="#" class="active">Teste de Áudio</a>
+            </div>
+            <button class="btn-nav">Ajuda</button>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Teste de <span>Ruído</span></h1>
+                    <p>Clique no botão abaixo para medir a intensidade sonora do seu ambiente em tempo real.</p>
+                    
+                    <div class="hero-btns">
+                        <!-- Botão que alterna entre Iniciar e Parar -->
+                        <button id="botao" class="btn-primary" onclick="alternar()">
+                            <i class="fas fa-microphone"></i> Iniciar Microfone
+                        </button>
+                        <a href="{{ url_for('home') }}" class="btn-secondary">Voltar</a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <!-- Card central que mostra os decibéis -->
+                    <div class="card-aparelho" style="width: 350px; margin: 0 auto;">
+                        <div class="card-info">
+                            <h3>Volume Atual</h3>
+                            <div id="valor" class="db-badge">0.00</div>
+                            <span id="tag-status" class="status-tag baixo">Aguardando...</span>
+                        </div>
+                        <div class="img-box" style="width: 100%; margin: 0; padding: 0; border-radius: 18px;">
+                            <img id='imagem-card' style="border-radius: 18px;" src="https://cdn3d.iconscout.com/3d/premium/thumb/mao-segurando-o-microfone-3d-icon-png-download-9325136.png" id="onda-audio" style="opacity: 1; width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="health-banner">
+        <div class="container footer-flex">
+            <div class="title-group">
+                <i class="fas fa-shield-halved"></i>
+                <span>Proteção Auditiva</span>
+            </div>
+            <p>O Shiu ajuda você a identificar ambientes que podem prejudicar sua saúde a longo prazo.</p>
+            <img src="{{ url_for('static', filename='wave-line.png') }}" class="wave-img">
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='script/audio.js') }}"></script>
 </body>
 </html>

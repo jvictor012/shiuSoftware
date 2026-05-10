@@ -2,57 +2,88 @@ let contexto;
 let analisador;
 let dados;
 let rodando = false;
-let intervaloId; // Precisamos guardar o ID para conseguir parar o intervalo
+let intervaloId;
 
 async function alternar() {
-  const botao = document.getElementById('botao');
-  
-  if (!rodando) {
-    // LÓGICA PARA INICIAR
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      contexto = new AudioContext();
-      const source = contexto.createMediaStreamSource(stream);
-      analisador = contexto.createAnalyser();
-      analisador.fftSize = 2048;
-      source.connect(analisador);
-      dados = new Float32Array(analisador.fftSize);
+    const botao = document.getElementById('botao');
+    const valorDisplay = document.getElementById('valor');
+    const tagStatus = document.getElementById('tag-status');
 
-      rodando = true;
-      botao.innerText = "Parar microfone";
+    if (!rodando) {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            contexto = new (window.AudioContext || window.webkitAudioContext)();
+            const source = contexto.createMediaStreamSource(stream);
+            analisador = contexto.createAnalyser();
+            analisador.fftSize = 2048;
+            source.connect(analisador);
+            dados = new Float32Array(analisador.fftSize);
 
-      // O setInterval deve ser criado APENAS quando iniciamos
-      intervaloId = setInterval(monitorar, 400);
-    } catch (err) {
-      console.error("Erro ao acessar microfone:", err);
+            rodando = true;
+            // Atualiza o botão com ícone e cor de "parar"
+            botao.innerHTML = '<i class="fas fa-stop"></i> Parar Teste';
+            botao.style.background = "#EF4444"; // Vermelho para indicar parada
+
+            intervaloId = setInterval(monitorar, 200); // 200ms deixa a atualização mais fluida
+        } catch (err) {
+            console.error("Erro ao acessar microfone:", err);
+            alert("Não foi possível acessar o microfone. Verifique as permissões.");
+        }
+    } else {
+        rodando = false;
+        // Volta o botão ao estado original
+        botao.innerHTML = '<i class="fas fa-microphone"></i> Iniciar Microfone';
+        botao.style.background = ""; // Volta para a cor do CSS (var(--blue))
+        
+        clearInterval(intervaloId);
+
+        if (contexto) {
+            await contexto.close();
+        }
+        
+        valorDisplay.innerText = "0.00";
+        tagStatus.innerText = "Aguardando...";
+        tagStatus.className = "status-tag baixo";
     }
-  } else {
-    // LÓGICA PARA PARAR
-    rodando = false;
-    botao.innerText = "Iniciar microfone";
-    
-    // Para o intervalo para não tentar ler dados de um contexto fechado
-    clearInterval(intervaloId);
-
-    if (contexto) {
-      await contexto.close();
-    }
-    
-    document.getElementById('valor').innerText = "0.00";
-  }
 }
 
 function monitorar() {
-  if (!analisador || !rodando) return;
+    if (!analisador || !rodando) return;
 
-  analisador.getFloatTimeDomainData(dados);
-  let soma = 0;
-  for (let i = 0; i < dados.length; i++) {
-    soma += dados[i] * dados[i];
-  }
-  let rms = Math.sqrt(soma / dados.length);
-  let db = rms > 0 ? 20 * Math.log10(rms) : -100;
-  let valorfinal = Math.max(0, db + 100);
-  
-  document.getElementById('valor').innerText = valorfinal.toFixed(2);
+    const valorDisplay = document.getElementById('valor');
+    const tagStatus = document.getElementById('tag-status');
+
+    analisador.getFloatTimeDomainData(dados);
+    let soma = 0;
+    for (let i = 0; i < dados.length; i++) {
+        soma += dados[i] * dados[i];
+    }
+    let rms = Math.sqrt(soma / dados.length);
+    let db = rms > 0 ? 20 * Math.log10(rms) : -100;
+    
+    // Ajuste de sensibilidade para exibição (offset de +100)
+    let valorfinal = Math.max(0, db + 100);
+
+    let imagemcard = document.getElementById('imagem-card')
+    
+    valorDisplay.innerText = valorfinal.toFixed(2);
+
+    // --- LÓGICA DE CORES DO SHIU ---
+    if (valorfinal < 50) {
+        tagStatus.innerText = "Silencioso";
+        tagStatus.className = "status-tag baixo";
+        imagemcard.src = "https://scontent.fmvf3-1.fna.fbcdn.net/v/t1.6435-9/94127704_3243222635688253_3616829167263285248_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=Y1FGAA9X4UIQ7kNvwHJ293v&_nc_oc=AdpQA9wi6cV7NVxbaJm-Rz6hmmyhyWh_9l71gF8j9zYzWdxd5NPizQrnfVH4eIxZLtO7YzwMgaEhPCdHuORhyzPN&_nc_zt=23&_nc_ht=scontent.fmvf3-1.fna&_nc_gid=fVpnHXfJSoNmE7t4VWvQpg&_nc_ss=7b289&oh=00_Af6ismkaLx2BeE9iA7heUIslKvcpNK8NT9XEeIikrQNy-g&oe=6A2874A3";
+    } else if (valorfinal < 75) {
+        tagStatus.innerText = "Moderado";
+        tagStatus.className = "status-tag moderado";
+        imagemcard.src = "https://i.pinimg.com/736x/cc/ee/6f/ccee6fc7dd16ab23a121845e44f232a2.jpg";
+    } else if (valorfinal < 85) {
+        tagStatus.innerText = "Alto";
+        tagStatus.className = "status-tag alto";
+        imagemcard.src = "https://i.pinimg.com/736x/f4/6d/ec/f46decd446aafebfb6df9d6a46f6a9df.jpg";
+    } else {
+        tagStatus.innerText = "Muito Alto";
+        tagStatus.className = "status-tag muito-alto";
+        imagemcard.src = "https://i.pinimg.com/736x/e7/31/27/e73127a3a855cf39193145897c258129.jpg";
+    }
 }
