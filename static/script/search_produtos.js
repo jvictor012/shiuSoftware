@@ -9,7 +9,6 @@ async function coletar_dados() {
 
 function filtrar(dados){
         const categoria = filtrando.value
-        window.alert(categoria)
         printar(dados, categoria);
     };
 

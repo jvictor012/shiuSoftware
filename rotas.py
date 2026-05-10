@@ -7,10 +7,9 @@ def home():
     return render_template("homepage.html")
 
 
-@app.route('/testar')
-def teste():
-    return render_template("teste.html")
-    pass
+@app.route('/capturar_som')
+def capturar():
+    return render_template("captura.html")
 
 @app.route('/api/produtos')
 def get_produtos():
