@@ -12,10 +12,11 @@
 
     <header class="navbar">
         <div class="container flex-nav">
-            <div class="logo">shiu</div>
+            <div class="logo" style="display: flex; align-items: center; justify-content: center;"><img src="/static/img/icon.png" style="width: 50px; height: 50px;"> SHIU</div>
             <nav class="menu">
                 <a href="/" class="active">Início</a>
                 <!-- Link para sua rota de capturar, mantendo seu backend -->
+                
                 <a href="{{ url_for('capturar') }}">Medir com microfone</a>
             </nav>
         </div>
@@ -24,6 +25,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-text" style="text-align: center; margin-bottom: 40px;">
+                <img src="/static/img/icon_azul.png" style="width:200px; height:200px;">
                 <h1>Veja o som.<br><span>Entenda o mundo.</span></h1>
                 <p>Pesquise pela marca ou filtre por categoria para ver os decibéis.</p>
             </div>
