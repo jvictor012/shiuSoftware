@@ -72,18 +72,18 @@ function monitorar() {
     if (valorfinal < 50) {
         tagStatus.innerText = "Silencioso";
         tagStatus.className = "status-tag baixo";
-        imagemcard.src = "https://scontent.fmvf3-1.fna.fbcdn.net/v/t1.6435-9/94127704_3243222635688253_3616829167263285248_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=Y1FGAA9X4UIQ7kNvwHJ293v&_nc_oc=AdpQA9wi6cV7NVxbaJm-Rz6hmmyhyWh_9l71gF8j9zYzWdxd5NPizQrnfVH4eIxZLtO7YzwMgaEhPCdHuORhyzPN&_nc_zt=23&_nc_ht=scontent.fmvf3-1.fna&_nc_gid=fVpnHXfJSoNmE7t4VWvQpg&_nc_ss=7b289&oh=00_Af6ismkaLx2BeE9iA7heUIslKvcpNK8NT9XEeIikrQNy-g&oe=6A2874A3";
+        imagemcard.src = "static/img/som_baixo.png";
     } else if (valorfinal < 75) {
         tagStatus.innerText = "Moderado";
         tagStatus.className = "status-tag moderado";
-        imagemcard.src = "https://i.pinimg.com/736x/cc/ee/6f/ccee6fc7dd16ab23a121845e44f232a2.jpg";
+        imagemcard.src = "static/img/sommedio.png";
     } else if (valorfinal < 85) {
         tagStatus.innerText = "Alto";
         tagStatus.className = "status-tag alto";
-        imagemcard.src = "https://i.pinimg.com/736x/f4/6d/ec/f46decd446aafebfb6df9d6a46f6a9df.jpg";
+        imagemcard.src = "static/img/somalto.png";
     } else {
         tagStatus.innerText = "Muito Alto";
         tagStatus.className = "status-tag muito-alto";
-        imagemcard.src = "https://i.pinimg.com/736x/e7/31/27/e73127a3a855cf39193145897c258129.jpg";
+        imagemcard.src = "static/img/sommuitoalto.png";
     }
 }
