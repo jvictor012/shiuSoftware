@@ -414,7 +414,7 @@ body {
     }
 
     .hero-btns {
-        flex-direction: column; /* Botões um sobre o outro */
+        flex-direction: column; 
     }
 
     .btn-primary, .btn-secondary {
@@ -422,7 +422,7 @@ body {
     }
 
     .features-grid {
-        grid-template-columns: 1fr; /* 1 coluna para features */
+        grid-template-columns: 1fr; 
     }
 
     .footer-flex {
@@ -436,16 +436,15 @@ body {
     }
 
     .grid-aparelhos {
-        grid-template-columns: 1fr; /* Cards de aparelhos em coluna única */
+        grid-template-columns: 1fr; 
     }
 }
 
 
-/* --- RESPONSIVIDADE ULTRA-SMALL (Telas abaixo de 360px) --- */
 
 @media (max-width: 360px) {
     :root {
-        /* Reduz ligeiramente o respiro do layout */
+        
         --padding-mobile: 12px;
     }
 
@@ -454,7 +453,7 @@ body {
     }
 
     .hero-text h1 {
-        font-size: 28px; /* Evita que o título quebre palavras */
+        font-size: 28px; 
     }
 
     .hero-text p {
@@ -463,7 +462,7 @@ body {
     }
 
     .logo {
-        font-size: 20px; /* Logo menor para caber na mesma linha se necessário */
+        font-size: 20px; 
     }
 
     .btn-nav {
@@ -472,11 +471,11 @@ body {
     }
 
     .inner-box {
-        padding: 25px 15px; /* Menos preenchimento interno nos cards */
+        padding: 25px 15px; 
     }
 
     .db-badge {
-        font-size: 28px; /* Ajuste no destaque dos decibéis */
+        font-size: 28px; 
     }
 
     .card-aparelho {
@@ -484,10 +483,9 @@ body {
     }
 
     .img-box {
-        height: 140px; /* Reduz altura das imagens dos aparelhos */
+        height: 140px; 
     }
 
-    /* Ajuste para o banner de saúde no rodapé */
     .title-group {
         font-size: 16px;
         flex-direction: column;

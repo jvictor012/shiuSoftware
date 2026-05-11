@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiu | Teste de Áudio</title>
-    <!-- Link para o seu CSS (ajustado para Flask como vimos antes) -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Importando ícones para ficar mais profissional -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -29,7 +27,6 @@
                     <p>Clique no botão abaixo para medir a intensidade sonora do seu ambiente em tempo real.</p>
                     
                     <div class="hero-btns">
-                        <!-- Botão que alterna entre Iniciar e Parar -->
                         <button id="botao" class="btn-primary" onclick="alternar()">
                             <i class="fas fa-microphone"></i> Iniciar Microfone
                         </button>
@@ -38,7 +35,6 @@
                 </div>
 
                 <div class="hero-image">
-                    <!-- Card central que mostra os decibéis -->
                     <div class="card-aparelho" style="width: 350px; margin: 0 auto;">
                         <div class="card-info">
                             <h3>Volume Atual</h3>

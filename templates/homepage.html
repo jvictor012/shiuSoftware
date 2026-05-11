@@ -15,7 +15,6 @@
             <div class="logo" style="display: flex; align-items: center; justify-content: center;"><img src="/static/img/icon.png" style="width: 50px; height: 50px;"> SHIU</div>
             <nav class="menu">
                 <a href="/" class="active">Início</a>
-                <!-- Link para sua rota de capturar, mantendo seu backend -->
                 
                 <a href="{{ url_for('capturar') }}">Medir com microfone</a>
             </nav>
@@ -30,7 +29,6 @@
                 <p>Pesquise pela marca ou filtre por categoria para ver os decibéis.</p>
             </div>
 
-            <!-- ÁREA DE BUSCA: Mesclando sua lógica com o estilo novo -->
             <div class="search-container" style="max-width: 600px; margin: 0 auto; display: flex; gap: 10px; margin-bottom: 30px;">
                 <input id="pesquisar" placeholder="Pesquise pela marca do produto!" 
                        style="flex: 1; padding: 15px; border-radius: 12px; border: 1px solid var(--border); font-family: 'Inter', sans-serif;">
@@ -51,15 +49,12 @@
         </div>
     </section>
 
-    <!-- LISTA DE RESULTADOS: Onde seu JS vai injetar os produtos -->
     <section class="container">
         <div class="page-header">
             <h1 id="titulo-lista">Lista de Produtos</h1><h2 id="categoria-titulo"></h2>
         </div>
         
-        <!-- Mantive o ID 'res', mas adicionei a classe do grid CSS para os cards ficarem bonitos -->
         <ul id="res" class="grid-aparelhos" style="list-style: none; padding: 0;">
-            <!-- Seus scripts search_produtos.js e pesquisa.js vão preencher aqui -->
         </ul>
     </section>
 
@@ -74,7 +69,6 @@
         </div>
     </footer>
 
-    <!-- SEUS SCRIPTS: Mantidos exatamente como na sua versão original -->
     <script type="module" src="/static/script/search_produtos.js"></script>
     <script src="/static/script/pesquisa.js"></script>
 </body>
