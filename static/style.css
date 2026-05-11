@@ -340,3 +340,161 @@ body {
 .status-tag.moderado { background: #FFFBEB; color: #F59E0B; }
 .status-tag.alto { background: #FEF2F2; color: #EF4444; }
 .status-tag.muito-alto { background: #FEE2E2; color: #991B1B; }
+
+
+
+
+
+/* --- RESPONSIVIDADE --- */
+
+/* Tablets e Telas Médias (até 992px) */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr; /* Transforma o grid em uma única coluna */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para features */
+    }
+
+    .steps-wrapper {
+        flex-direction: column; /* Passos um abaixo do outro */
+        gap: 40px;
+    }
+
+    .step-card {
+        width: 100%; /* Ocupa a largura total */
+    }
+
+    .fa-arrow-right {
+        transform: rotate(90deg); /* Seta aponta para baixo no mobile */
+        margin: 10px 0;
+    }
+}
+
+/* Celulares (até 600px) */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .flex-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .menu a {
+        margin: 0 8px;
+        font-size: 13px;
+    }
+
+    .hero {
+        padding: 40px 0;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-btns {
+        flex-direction: column; /* Botões um sobre o outro */
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr; /* 1 coluna para features */
+    }
+
+    .footer-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title-group {
+        min-width: auto;
+        justify-content: center;
+    }
+
+    .grid-aparelhos {
+        grid-template-columns: 1fr; /* Cards de aparelhos em coluna única */
+    }
+}
+
+
+/* --- RESPONSIVIDADE ULTRA-SMALL (Telas abaixo de 360px) --- */
+
+@media (max-width: 360px) {
+    :root {
+        /* Reduz ligeiramente o respiro do layout */
+        --padding-mobile: 12px;
+    }
+
+    .container {
+        padding: 0 var(--padding-mobile);
+    }
+
+    .hero-text h1 {
+        font-size: 28px; /* Evita que o título quebre palavras */
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .logo {
+        font-size: 20px; /* Logo menor para caber na mesma linha se necessário */
+    }
+
+    .btn-nav {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .inner-box {
+        padding: 25px 15px; /* Menos preenchimento interno nos cards */
+    }
+
+    .db-badge {
+        font-size: 28px; /* Ajuste no destaque dos decibéis */
+    }
+
+    .card-aparelho {
+        padding: 15px;
+    }
+
+    .img-box {
+        height: 140px; /* Reduz altura das imagens dos aparelhos */
+    }
+
+    /* Ajuste para o banner de saúde no rodapé */
+    .title-group {
+        font-size: 16px;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .health-banner p {
+        font-size: 12px;
+    }
+}
