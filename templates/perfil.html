@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container flex-nav">
+            <div class="logo" style="display: flex; align-items: center; justify-content: center;"><img src="/static/img/icon.png" style="width: 50px; height: 50px;"> SHIU</div>
+            <nav class="menu">
+                <a href="/" class="active">Início</a>
+                
+                <a href="{{ url_for('capturar') }}">Medir com microfone</a>
+
+                <a href = "{{ url_for('adicionar') }}">Adicionar Itens</a>
+
+            </nav>
+        </div>
+    </header>
+
+    <h1>Perfil</h1>
+
+    <p>Olá, {{ current_user.nome }}! Aproveite o Shiu!</p>
+    <p>Você está cadastrado com o email: {{ current_user.email }}</p>
+    <a href="/logout">Sair</a>
+
+</body>
+</html>

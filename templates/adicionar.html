@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar_produtos</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container flex-nav">
+            <div class="logo" style="display: flex; align-items: center; justify-content: center;"><img src="/static/img/icon.png" style="width: 50px; height: 50px;"> SHIU</div>
+            <nav class="menu">
+                <a href="/" class="active">Início</a>
+                
+                <a href="{{ url_for('capturar') }}">Medir com microfone</a>
+            </nav>
+        </div>
+    </header>
+    <h1>{{ resposta }}</h1>
+    <form action="/adicionar" method="POST">
+
+    <label>Marca:</label>
+    <select name="id_marca" required>
+        <option value="">Selecione uma marca</option>
+        <option value="38">Nenhuma das opções abaixo</option>
+        <option value="1">Arno</option>
+        <option value="2">Mondial</option>
+        <option value="3">Britânia</option>
+        <option value="4">Mallory</option>
+        <option value="5">Ventisol</option>
+        <option value="6">WAP</option>
+        <option value="7">Branco</option>
+        <option value="8">Husqvarna</option>
+        <option value="9">Intech Machine</option>
+        <option value="10">Makita</option>
+        <option value="11">Negano</option>
+        <option value="12">Nakasaki</option>
+        <option value="13">Buffalo</option>
+        <option value="14">Coyote</option>
+        <option value="15">Daikin</option>
+        <option value="16">ECHO</option>
+        <option value="17">Gartene</option>
+        <option value="18">Garland</option>
+        <option value="19">Matsuyama</option>
+        <option value="20">Oleo-Mac</option>
+        <option value="21">Siga Tools</option>
+        <option value="22">Vonder</option>
+        <option value="23">Taiff</option>
+        <option value="24">Philco</option>
+        <option value="25">Karcher</option>
+        <option value="26">Electrolux</option>
+        <option value="27">Black+Decker</option>
+        <option value="28">Taiff</option>
+        <option value="29">Philco</option>
+        <option value="30">Karcher</option>
+        <option value="31">Electrolux</option>
+        <option value="32">Black+Decker</option>
+        <option value="33">Gama Italy</option>
+        <option value="34">Conair</option>
+        <option value="35">Stihl</option>
+        <option value="36">Bosch</option>
+        <option value="37">Dyson</option>
+    </select>
+
+    <br><br>
+
+    <label>Nome do produto:</label>
+    <input type="text" name="nome_produto" required>
+
+    <br><br>
+
+    <label>Categoria:</label>
+    <select name = "categoria_produto"class="filtrar-select" style="padding: 10px; border-radius: 8px; border: 1px solid var(--border);">
+        <option value="limpeza domestica">Limpeza doméstica</option>
+        <option value="eletrodomestico">Eletrodomésticos</option>
+        <option value="casa e construcao">Casa e Construção</option>
+        <option value="itens de beleza">Itens de beleza</option>
+    </select>
+
+    <br><br>
+
+    <label>Barulho:</label>
+    <input type="number" name="barulho" required>
+
+    <br><br>
+
+    <label>Link da imagem:</label>
+    <input type="url" name="link_imagem" required>
+
+    <br><br>
+
+    <button type="submit">Adicionar produto</button>
+
+</form>
+</body>
+</html>
